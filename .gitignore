@@ -57,3 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# exclude VSCode meta information
+.vscode 
+
+# exclude build folder
+build
+

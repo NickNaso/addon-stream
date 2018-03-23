@@ -1,0 +1,12 @@
+{
+  "name": "pipe-stream-js-to-cpp-example",
+  "version": "0.0.0",
+  "description": "Node.js Addons - Stream from JS to C++",
+  "main": "index.js",
+  "private": true,
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "*",
+    "node-addon-api": "*"
+  }
+}
