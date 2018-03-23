@@ -40,12 +40,15 @@ StreamWritable::StreamWritable(const Napi::CallbackInfo& info)
   // NOOP
 }
 
-void StreamWritable::Write(const Napi::CallbackInfo& info) {
-  if (!info[0].IsBuffer()) {
-    std::cout << "It's not a buffer" << std::endl;
-    // TODO thorw an error
-  } else {
-    std::cout << "OK" << std::endl;
+Napi::Value StreamWritable::Write(const Napi::CallbackInfo& info) {
+  if (info.Length() < 1 ) {
+    throw Napi::Error::New(info.Env(), "1 argument expected");
   }
+  if (!info[0].IsBuffer()) {
+    throw Napi::Error::New(info.Env(), "The parameter must be a buffer");
+  }  
+  Napi::Buffer<char> buffer = info[0].As<Napi::Buffer<char>>();
+  std::string echo(buffer.Data(), buffer.Length());
+  return Napi::String::New(info.Env(), echo);
 }
 

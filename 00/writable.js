@@ -21,11 +21,6 @@
 const { StreamWritable } = require('bindings')('stream_writable')
 const { Writable } = require('stream')
 
-const w = new StreamWritable()
-w.write(Buffer.from('KO'))
-w.write(Buffer.from('KO'))
-w.write(Buffer.from('KO'))
-
 class WritableWrapper extends Writable {
 
     constructor(opts = {}) {
@@ -33,9 +28,8 @@ class WritableWrapper extends Writable {
         this._writable = new StreamWritable()
     }
 
-    write(chunk, encoding, cb) {
-        //console.log(chunk.toString())
-        this._writable.write(chunk.toString())
+    _write(chunk, encoding, cb) {
+        console.log(this._writable.write(chunk))
         if (cb) {
             cb()
         }
