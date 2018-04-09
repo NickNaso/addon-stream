@@ -16,31 +16,31 @@
  * Nicola Del Gobbo <nicoladelgobbo@gmail.com>
  ******************************************************************************/
 
-#include "stream-writable.h"
+#include "passthrough.h"
 #include <iostream>
 
-Napi::FunctionReference StreamWritable::constructor;
+Napi::FunctionReference PassThrough::constructor;
 
-Napi::Object StreamWritable::Init(Napi::Env env, Napi::Object exports) {
+Napi::Object PassThrough::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func = DefineClass(env, "StreamWritable", {
-    InstanceMethod("write", &StreamWritable::Write)
+  Napi::Function func = DefineClass(env, "PassThrough", {
+    InstanceMethod("write", &PassThrough::Write)
   });
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
 
-  exports.Set("StreamWritable", func);
+  exports.Set("PassThrough", func);
   return exports;
 }
 
-StreamWritable::StreamWritable(const Napi::CallbackInfo& info) 
-: Napi::ObjectWrap<StreamWritable>(info)  {
+PassThrough::PassThrough(const Napi::CallbackInfo& info) 
+: Napi::ObjectWrap<PassThrough>(info)  {
   // NOOP
 }
 
-Napi::Value StreamWritable::Write(const Napi::CallbackInfo& info) {
+Napi::Value PassThrough::Write(const Napi::CallbackInfo& info) {
   if (info.Length() < 1 ) {
     throw Napi::Error::New(info.Env(), "1 argument expected");
   }
@@ -48,7 +48,8 @@ Napi::Value StreamWritable::Write(const Napi::CallbackInfo& info) {
     throw Napi::Error::New(info.Env(), "The parameter must be a buffer");
   }  
   Napi::Buffer<char> buffer = info[0].As<Napi::Buffer<char>>();
-  std::string echo(buffer.Data(), buffer.Length());
-  return Napi::String::New(info.Env(), echo);
+  // Convert buffer to a string and pass it back to JS
+  // std::string echo(buffer.Data(), buffer.Length());
+  // return Napi::String::New(info.Env(), echo);
+  return buffer;
 }
-

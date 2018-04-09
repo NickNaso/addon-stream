@@ -1,10 +1,10 @@
 {
   "targets": [
     {
-      "target_name": "stream_writable",
+      "target_name": "passthrough",
       "sources": [
         "src/binding.cc",
-        "src/stream-writable.cc"
+        "src/passthrough.cc"
       ],
       'cflags!': [ '-fno-exceptions' ],
       'cflags_cc!': [ '-fno-exceptions' ],

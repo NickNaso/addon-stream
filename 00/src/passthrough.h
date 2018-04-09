@@ -18,10 +18,10 @@
 
 #include <napi.h>
 
-class StreamWritable : public Napi::ObjectWrap<StreamWritable> {
+class PassThrough : public Napi::ObjectWrap<PassThrough> {
  public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
-  StreamWritable(const Napi::CallbackInfo& info);
+  PassThrough(const Napi::CallbackInfo& info);
   Napi::Value Write(const Napi::CallbackInfo& info);
 
  private:

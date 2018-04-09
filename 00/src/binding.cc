@@ -17,10 +17,10 @@
  ******************************************************************************/
 
 #include <napi.h>
-#include "stream-writable.h"
+#include "passthrough.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
-  StreamWritable::Init(env, exports);
+  PassThrough::Init(env, exports);
   return exports;
 }
 

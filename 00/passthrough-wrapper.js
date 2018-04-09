@@ -18,24 +18,23 @@
 
 'use strict'
 
-const { StreamWritable } = require('bindings')('stream_writable')
-const { Writable } = require('stream')
+const { PassThrough } = require('bindings')('passthrough')
+const { Transform } = require('readable-stream')
 
-class WritableWrapper extends Writable {
+class PassthroughWrapper extends Transform {
 
     constructor(opts = {}) {
         super(opts)
-        this._writable = new StreamWritable()
+        this._passthrough = new PassThrough()
     }
 
-    _write(chunk, encoding, cb) {
-        console.log(this._writable.write(chunk))
-        if (cb) {
-            cb()
-        }
+    _transform(chunk, encoding, cb) {
+        // console.log(chunk.toString())       
+        // console.log(Buffer.from(this._passthrough.write(chunk)).toString())
+        this.push(this._passthrough.write(chunk))
+        cb()
     }
 
 }
 
-
-module.exports = WritableWrapper
+module.exports = PassthroughWrapper

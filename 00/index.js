@@ -20,12 +20,13 @@
 
 const fs = require('fs')
 const path = require('path')
-const Writable = require('./writable')
+const PassthroughWrapper = require('./passthrough-wrapper')
 
 const FILE_TO_READ = 'nodejs.png'
+const FILE_TO_WRITE = 'nodejs-passthrough-copy.png'
 
-const writable = new Writable()
+const inStream = fs.createReadStream(path.join(__dirname, FILE_TO_READ))
+const transformStream = new PassthroughWrapper()
+const outStream = fs.createWriteStream(path.join(__dirname, FILE_TO_WRITE))
 
-fs
-.createReadStream(path.join(__dirname, FILE_TO_READ))
-.pipe(writable)
+inStream.pipe(transformStream).pipe(outStream)
