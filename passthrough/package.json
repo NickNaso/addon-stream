@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Node.js Addons - Passthrough example",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "private": true,
   "gypfile": true,
   "dependencies": {

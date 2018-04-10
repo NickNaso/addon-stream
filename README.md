@@ -1,6 +1,6 @@
-# Stream on Node.js Native Add-ons using N-API
+# How to use Stream on Node.js Native Add-ons
 
-How to use and create stream on Node.js native add-ons
+How to use and create stream on Node.js native add-ons with N-API
 
 >A stream is an abstract interface for working with streaming data in Node.js. 
 >The stream module provides a base API that makes it easy to build objects that 
