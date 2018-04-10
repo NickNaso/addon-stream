@@ -6,13 +6,13 @@ How to use and create stream on Node.js native add-ons
 >The stream module provides a base API that makes it easy to build objects that 
 >implement the stream interface.
 
-There are many stream objects provided by Node.js. For instance, a [request to an 
-HTTP server](https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage) 
-and [process.stdout](https://nodejs.org/dist/latest-v9.x/docs/api/process.html#process_process_stdout) 
+There are many stream objects provided by Node.js. For instance, a **[request to an 
+HTTP server](https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage)**
+and **[process.stdout](https://nodejs.org/dist/latest-v9.x/docs/api/process.html#process_process_stdout)**
 are both stream instances.
 
 Streams can be readable, writable, or both. All streams are instances of 
-[EventEmitter](https://nodejs.org/dist/latest/docs/api/events.html).
+**[EventEmitter](https://nodejs.org/dist/latest/docs/api/events.html)**.
 
 Here you can find an examples where I used a Transform stream to pass and get
 back data from a native add-on. This is a simple passthrough example.
