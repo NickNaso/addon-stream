@@ -28,6 +28,7 @@ $ node index.js or npm start
 ## Examples
 
 * **[Passthrough](/passthrough)**
+* **[Native PassThrough with backpressure and async processing](/native-passthrough)**
 
 ### Node.js C / C ++ Addons
 
